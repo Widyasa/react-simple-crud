@@ -1,15 +1,21 @@
 import './style.css'
 import {Employee} from "./Employee";
 import ModalEmployee from "./ModalEmployee";
+import {useState} from "react";
 type Props = {
     list : Employee[];
     onDeleteClickHnd: (data: Employee) => void
 }
 const EmployeeList = (props:Props) => {
     const {list, onDeleteClickHnd} = props;
-    // const onDeleteBtnClick = (data:Employee) => {
-    //
-    // }
+    const [showModal, setShowMoal] = useState(false)
+    const [dataToShow, setDataToShow] = useState(null as Employee | null)
+    const viewEmployee = (data : Employee) => {
+        setDataToShow(data)
+        setShowMoal(true)
+    }
+    const closingModal = () => setShowMoal(false)
+
     return (
         <div>
 
@@ -30,7 +36,7 @@ const EmployeeList = (props:Props) => {
                                 <td>{`${employee.firstName} ${employee.lastname}`}</td>
                                 <td>{employee.email}</td>
                                 <td className='button-wrapper'>
-                                    <input type="button" value="view"/>
+                                    <input type="button" value="view" onClick={() => viewEmployee(employee)}/>
                                     <input type="button" value="edit"/>
                                     <input type="button" value="delete" onClick={() => onDeleteClickHnd(employee)} />
                                 </td>
@@ -41,7 +47,8 @@ const EmployeeList = (props:Props) => {
                 </tbody>
 
             </table>
-            <ModalEmployee />
+            {showModal && dataToShow !== null && (<ModalEmployee modalClose={closingModal} data={dataToShow}/>)}
+
         </div>
 
     )
