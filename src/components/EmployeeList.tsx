@@ -4,10 +4,11 @@ import ModalEmployee from "./ModalEmployee";
 import {useState} from "react";
 type Props = {
     list : Employee[];
-    onDeleteClickHnd: (data: Employee) => void
+    onDeleteClickHnd: (data: Employee) => void;
+    onEdit: (data: Employee) => void;
 }
 const EmployeeList = (props:Props) => {
-    const {list, onDeleteClickHnd} = props;
+    const {list, onDeleteClickHnd, onEdit} = props;
     const [showModal, setShowMoal] = useState(false)
     const [dataToShow, setDataToShow] = useState(null as Employee | null)
     const viewEmployee = (data : Employee) => {
@@ -37,7 +38,7 @@ const EmployeeList = (props:Props) => {
                                 <td>{employee.email}</td>
                                 <td className='button-wrapper'>
                                     <input type="button" value="view" onClick={() => viewEmployee(employee)}/>
-                                    <input type="button" value="edit"/>
+                                    <input type="button" value="edit" onClick={() => onEdit(employee)}/>
                                     <input type="button" value="delete" onClick={() => onDeleteClickHnd(employee)} />
                                 </td>
                             </tr>
