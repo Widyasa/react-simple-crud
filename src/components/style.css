@@ -1,0 +1,30 @@
+.article-header{
+    background: darkblue;
+    color: white;
+    border: 3px solid transparent;
+    text-align: center;
+}
+
+.section-content{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.button-wrapper{
+    display: flex;
+    gap: 12px;
+}
+
